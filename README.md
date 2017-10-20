@@ -17,22 +17,12 @@ A Template for web app projects using Phoenix Framework 1.3 + Distillery
 - Docker Compose
 - Cmake
 
-## Considerations for customizations
+## Rename the project
 
-First you need change some directories names
-
+Run the script with the name you want for your project as a parameter
 ```
-mv src/lib/web_app.ex src/lib/my_project.ex
-mv src/lib/web_app_web.ex src/lib/my_project_web.ex
-mv src/lib/web_app src/lib/my_project
-mv src/lib/web_app_web src/lib/my_project_web
-```
-
-Rename all namespaces in every elixir modules, run this commands inside src folder
-
-```
-LC_ALL=C find ./src -type f -exec sed -i '' -e "s/web_app/my_project/" {} \;
-LC_ALL=C find ./src -type f -exec sed -i '' -e "s/WebApp/MyProject/" {} \;
+chmod +x rename.sh
+./rename.sh my_project
 ```
 
 ## Run the project for development
