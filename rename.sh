@@ -11,6 +11,7 @@ mv "src/lib/web_app.ex" "src/lib/${project}.ex";
 mv "src/lib/web_app_web.ex" "src/lib/${project}_web.ex";
 mv "src/lib/web_app" "src/lib/${project}";
 mv "src/lib/web_app_web" "src/lib/${project}_web";
+mv "src/test/web_app_web" "src/lib/${project}_web";
 
 IFS='_' read -r -a array <<< "$project"
 
