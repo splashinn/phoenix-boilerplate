@@ -1,10 +1,10 @@
 # Phoenix 1.3 Bootsrap Project
 
-A Template for web app projects using Phoenix Framework 1.3 + Distillery
+A Template for web app projects using Phoenix Framework 1.3.3 + Distillery
 
 ## What includes?
 
-- Phoenix Framework 1.3 and Elixir 1.5.1
+- Phoenix Framework 1.3.3 and Elixir 1.6.61
 - Distillery for production releases
 - Pre hooks for run migrations in production
 - Environment variables for settings
@@ -40,7 +40,7 @@ Descargar https://download.docker.com/mac/stable/Docker.dmg
 ```shell
 curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
-curl -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 ```

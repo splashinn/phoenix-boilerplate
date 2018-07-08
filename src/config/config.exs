@@ -13,7 +13,7 @@ config :web_app, WebAppWeb.Endpoint,
 
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:user_id]
 
 config :web_app, WebApp.Repo,
   adapter: Ecto.Adapters.Postgres,

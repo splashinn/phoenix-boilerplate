@@ -6,9 +6,10 @@ bootstrap:
 	cp .env.template .env
 	docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.get \
-		&& mix deps.compile"
-	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "npm install"
-	docker-compose run --rm phx sh -c "mix ecto.setup"
+		&& mix deps.compile \
+		&& mix ecto.setup"
+	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
+		npm install"
 
 reset:
 	docker-compose run --rm --no-deps phx sh -c "\
@@ -104,7 +105,11 @@ check.all:
 
 build.release:
 	rm -rf ./src/_build/prod/rel
+	ENV=prod docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
+		npm install \
+		&& npx brunch build --production"
 	ENV=prod docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.get \
 		&& mix deps.compile \
+		&& mix phx.digest \
 		&& mix release --no-tar --env=prod"
