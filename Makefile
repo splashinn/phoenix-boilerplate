@@ -6,19 +6,19 @@ bootstrap:
 	cp .env.template .env
 	docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.get \
-		&& mix deps.compile \
-		&& mix ecto.setup"
+		&& mix deps.compile"
 	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
 		npm install"
+	docker-compose run --rm phx sh -c "mix ecto.setup"
 
 reset:
 	docker-compose run --rm --no-deps phx sh -c "\
 		rm -rf /app/src/deps/* \
 		&& rm -rf /app/src/_build/dev/* \
-		&& rm -rf /app/src/_build/test/*"
+		&& rm -rf /app/src/_build/test/* \
+		&& rm -rf /app/src/assets/node_modules/*"
 	docker-compose stop
 	docker-compose rm -f
-	rm -rf src/assets/node_modules
 
 
 ##################################################################
