@@ -9,7 +9,6 @@ services:
       - ./src/_build/prod:/app/src/_build/prod
       - ./scripts:/scripts
       - build:/app/src/_build
-      - deps:/app/src/deps
       - node:/app/src/assets/node_modules
     depends_on:
       - postgres
@@ -27,5 +26,4 @@ services:
 
 volumes:
   build:
-  deps:
   node:
