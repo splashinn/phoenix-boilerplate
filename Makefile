@@ -3,7 +3,6 @@
 ##################################################################
 
 bootstrap:
-	cp .env.template .env
 	docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.get \
 		&& mix deps.compile"

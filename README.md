@@ -17,12 +17,17 @@ A Template for web app projects using Phoenix Framework 1.3.3 + Distillery
 - Docker Compose
 - Cmake
 
-## Rename the project
+## Setup the project
 
 Run the script with the name you want for your project as a parameter
 ```
 chmod +x rename.sh
 ./rename.sh my_project
+```
+
+Copy the .env.template file to .env
+```
+cp .env.template .env
 ```
 
 ## Run the project for development
