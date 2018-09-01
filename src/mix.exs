@@ -42,9 +42,9 @@ defmodule WebApp.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.7", only: :test},
-      {:ex_machina, "~> 2.1", only: :test},
+      {:credo, "~> 0.10", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:ex_machina, "~> 2.2", only: :test},
       {:distillery, "~> 1.5", runtime: false},
     ]
   end
