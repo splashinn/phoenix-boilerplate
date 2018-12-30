@@ -1,6 +1,7 @@
-Path.join(["rel", "plugins", "*.exs"])
-  |> Path.wildcard()
-  |> Enum.map(&Code.eval_file(&1))
+~w(rel plugins *.exs)
+|> Path.join()
+|> Path.wildcard()
+|> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
     default_release: :default,
@@ -9,18 +10,18 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :dev
-  set pre_start_hook: "rel/hooks/pre_start"
+  set cookie: :"KKTZfNn=SV@fD$9sob>%qaIzM*Di_FAD/n~bBB26P9O{i:BRvTy5C;BB"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :prod
-  set pre_start_hook: "rel/hooks/pre_start"
+  set cookie: :"C4D>N10TlgFWX5BIU]mBHAS^~OGNN[f{1XFTiXG*Lq,W^!=ajjU/?%!@"
+  set vm_args: "rel/vm.args"
+  set pre_start_hooks: "rel/hooks/pre_start"
 end
 
-release :release do
+release :web_app do
   set version: current_version(:web_app)
   set applications: [
     :runtime_tools

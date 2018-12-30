@@ -1,10 +1,10 @@
-# Phoenix 1.3.3 Bootsrap Project
+# Phoenix 1.4 Bootsrap Project
 
-A Template for web app projects using Phoenix Framework 1.3.3 + Distillery
+A Template for web app projects using Phoenix Framework 1.4 + Distillery
 
 ## What includes?
 
-- Phoenix Framework 1.3.3 and Elixir 1.6.6
+- Phoenix Framework 1.4 and Elixir 1.7.1
 - Distillery for production releases
 - Pre hooks for run migrations in production
 - Environment variables for settings

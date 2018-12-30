@@ -5,13 +5,10 @@ defmodule WebAppWeb.ErrorViewTest do
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(WebAppWeb.ErrorView, "404.html", []) ==
-          "Not Found"
+    assert render_to_string(WebAppWeb.ErrorView, "404.html", []) == "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(WebAppWeb.ErrorView, "500.html", []) ==
-          "Internal Server Error"
+    assert render_to_string(WebAppWeb.ErrorView, "500.html", []) == "Internal Server Error"
   end
-
 end

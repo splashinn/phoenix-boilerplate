@@ -106,7 +106,7 @@ build.release:
 	rm -rf ./src/_build/prod/rel
 	ENV=prod docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
 		npm install \
-		&& npx brunch build --production"
+		&& webpack --mode production"
 	ENV=prod docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.get \
 		&& mix deps.compile \

@@ -20,26 +20,28 @@ defmodule WebAppWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: WebAppWeb
+
       import Plug.Conn
-      import WebAppWeb.Router.Helpers
       import WebAppWeb.Gettext
+      alias WebAppWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/web_app_web/templates",
-                        namespace: WebAppWeb
+      use Phoenix.View,
+        root: "lib/web_app_web/templates",
+        namespace: WebAppWeb
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
+      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import WebAppWeb.Router.Helpers
       import WebAppWeb.ErrorHelpers
       import WebAppWeb.Gettext
+      alias WebAppWeb.Router.Helpers, as: Routes
     end
   end
 

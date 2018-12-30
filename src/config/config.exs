@@ -19,4 +19,6 @@ config :web_app, WebApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   pool_size: 10
 
-import_config "#{Mix.env}.exs"
+config :phoenix, :json_library, Jason
+
+import_config "#{Mix.env()}.exs"
