@@ -6,10 +6,9 @@ services:
       - ${HOST_HTTP_PORT}:${PHX_HTTP_PORT}
     volumes:
       - ./src:/app/src
-      - ./src/_build/prod:/app/src/_build/prod
       - ./scripts:/scripts
       - deps:/app/src/deps
-      - build:/app/src/_build
+      - builds:/app/src/_build
       - node:/app/src/assets/node_modules
     depends_on:
       - postgres
@@ -27,5 +26,5 @@ services:
 
 volumes:
   deps:
-  build:
+  builds:
   node:

@@ -21,10 +21,9 @@ environment :prod do
   set pre_start_hooks: "rel/hooks/pre_start"
 end
 
-release :web_app do
+release :phx do
   set version: current_version(:web_app)
   set applications: [
     :runtime_tools
   ]
 end
-

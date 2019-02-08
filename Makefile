@@ -93,22 +93,3 @@ ecto.migrate:
 
 npm.install:
 	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "npm install"
-
-
-##################################################################
-#### Release Commands
-##################################################################
-
-check.all:
-	ENV=test docker-compose run --rm phx sh -c "sh /scripts/run-checks.sh"
-
-build.release:
-	rm -rf ./src/_build/prod/rel
-	ENV=prod docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
-		npm install \
-		&& webpack --mode production"
-	ENV=prod docker-compose run --rm --no-deps phx sh -c "\
-		mix deps.get \
-		&& mix deps.compile \
-		&& mix phx.digest \
-		&& mix release --no-tar --env=prod"
