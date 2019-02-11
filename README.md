@@ -7,7 +7,8 @@ A Template for web app projects using Phoenix Framework 1.4 + Distillery
 - Phoenix Framework 1.4 and Elixir 1.7.1
 - Distillery for production releases
 - Pre hooks for run migrations in production
-- Environment variables for settings
+- Environment variables for setting
+- OpenSSL for localhosts
 - Docker compose setup
 - Ready for TDD
 
