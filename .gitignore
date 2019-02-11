@@ -7,6 +7,8 @@
 /src/assets/node_modules
 /src/priv/static/
 /src/mix.lock
+/src/priv/dev.key
+/src/priv/dev.crt
 /.env
 cover
 *.7z

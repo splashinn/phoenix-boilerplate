@@ -1,6 +1,11 @@
 use Mix.Config
 
 config :web_app, WebAppWeb.Endpoint,
+  https: [
+    port: System.get_env("PHX_HTTPS_PORT"),
+    keyfile: "priv/dev.key",
+    certfile: "priv/dev.crt"
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

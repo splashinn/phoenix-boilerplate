@@ -9,13 +9,18 @@ bootstrap:
 	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "\
 		npm install"
 	docker-compose run --rm phx sh -c "mix ecto.setup"
+	docker-compose run --rm phx sh -c "echo '\n\n\nLLENA LOS DATOS PARA TU CERT LOCAL\n\n\n' \
+		&& apk add -U openssl \
+		&& openssl req -new -x509 -nodes -out priv/dev.crt -keyout priv/dev.key"
 
 reset:
 	docker-compose run --rm --no-deps phx sh -c "\
 		rm -rf /app/src/deps/* \
 		&& rm -rf /app/src/_build/dev/* \
 		&& rm -rf /app/src/_build/test/* \
-		&& rm -rf /app/src/assets/node_modules/*"
+		&& rm -rf /app/src/assets/node_modules/* \
+		&& rm -rf /app/src/priv/key.key \
+		&& rm -rf /app/src/priv/key.crt"
 	docker-compose stop
 	docker-compose rm -f
 

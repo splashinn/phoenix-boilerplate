@@ -1,9 +1,10 @@
-version: '3.1'
+version: '3.7'
 services:
   phx:
     image: alvarolizama/phoenix:alpine-3.8
     ports:
       - ${HOST_HTTP_PORT}:${PHX_HTTP_PORT}
+      - ${HOST_HTTPS_PORT}:${PHX_HTTPS_PORT}
     volumes:
       - ./src:/app/src
       - ./scripts:/scripts
@@ -15,6 +16,7 @@ services:
     environment:
       - MIX_ENV=${ENV}
       - PHX_HTTP_PORT=${PHX_HTTP_PORT}
+      - PHX_HTTPS_PORT=${PHX_HTTPS_PORT}
       - PHX_URL_HOST=${PHX_URL_HOST}
       - PHX_SECRET_KEY_BASE=${PHX_SECRET_KEY_BASE}
       - PG_DATABASE_URL=ecto://postgres:postgres@postgres/${PG_DATABASE_NAME}_${ENV}
