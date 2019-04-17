@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   phx:
-    image: alvarolizama/phoenix:alpine-3.8
+    image: alvarolizama/phoenix:alpine-3.9
     ports:
       - ${HOST_HTTP_PORT}:${PHX_HTTP_PORT}
       - ${HOST_HTTPS_PORT}:${PHX_HTTPS_PORT}
