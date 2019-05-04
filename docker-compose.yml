@@ -21,7 +21,6 @@ services:
       - PHX_SECRET_KEY_BASE=${PHX_SECRET_KEY_BASE}
       - PG_DATABASE_URL=ecto://postgres:postgres@postgres/${PG_DATABASE_NAME}_${ENV}
     working_dir: /app/src
-    command: mix phx.server
 
   postgres:
     image: postgres:9

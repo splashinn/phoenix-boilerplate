@@ -93,13 +93,7 @@ chmod +x .git/hooks/pre-commit
 
 ### Docker commands
 
-- make start: Start applications services
-- make restart.phx: Restart web service
-- make restart.postgres: Restart postgres service
-- make stop.phx: Stop web service
-- make stop.postgres: Stop postgres service
-- make logs.phx: Show logs for web service
-- make logs.postgres: Show logs for postgres service
+- make run.phx: Start applications services and an interactive phx shell
 - make shell.phx: Open a shell in web service container
 - make shell.postgres: Open a shell in postgres service container
 

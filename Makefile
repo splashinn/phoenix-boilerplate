@@ -29,26 +29,8 @@ reset:
 #### Docker Commands
 ##################################################################
 
-start:
-	docker-compose up -d phx
-
-restart.phx:
-	docker-compose restart phx
-
-restart.postgres:
-	docker-compose restart postgres
-
-stop.phx:
-	docker-compose stop phx
-
-stop.postgres:
-	docker-compose stop postgres
-
-logs.phx:
-	docker-compose logs -f phx
-
-logs.postgres:
-	docker-compose logs -f postgres
+run.phx:
+	docker-compose run --service-ports phx iex --sname phx -S mix phx.server
 
 shell.phx:
 	docker-compose run --rm phx sh
