@@ -22,10 +22,10 @@ config :web_app, WebAppWeb.Endpoint,
 config :web_app, WebAppWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{lib/web_app_web/views/.*(ex)$},
-      ~r{lib/web_app_web/templates/.*(eex)$}
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/web_app_web/{live,views}/.*(ex)$",
+      ~r"lib/web_app_web/templates/.*(eex)$"
     ]
   ]
 
