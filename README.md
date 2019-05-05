@@ -71,10 +71,10 @@ apt-get install cmake
 make bootstrap
 ```
 
-- Test the installation running the service and open **http://localhost**
+- Test the installation running the service and open **http://localhost:8080**
 
 ```shell
-docker-compose up web
+make phx.run
 ```
 
 - If you have a pre commit hook for check tests and coverage
@@ -91,31 +91,24 @@ chmod +x .git/hooks/pre-commit
 - make bootstrap: Create an enviroment and setup the project
 - make reset: Reset all setups
 
-### Docker commands
-
-- make run.phx: Start applications services and an interactive phx shell
-- make shell.phx: Open a shell in web service container
-- make shell.postgres: Open a shell in postgres service container
-
 ### Development commands
 
+- make phx.run: Start applications services and an interactive phx shell
+- make phx.shell: Open a shell in web service container
+- make phx.routes: Show routes
 - make test: Run tests
 - make test.shell: Open a shell for testing
 - make credo: Run credo
 - make coverage: Run coverage reports
 - make gettext: Compile gettext
-- make routes: Show routes
 - make deps.update: Clean and update dependencies
 - make ecto.reset: Delete database and recreate all
 - make ecto.setup: Setup database and migrations
 - make ecto.migrate: Run migrations
+- make psql.shell: Open a shell in postgres service container
 - make npm.install: Run npm install
 
 ## Make a release
-
-Create a new release
-
-    make build.release
 
 Build a new docker images
 

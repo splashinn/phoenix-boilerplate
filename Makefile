@@ -26,22 +26,17 @@ reset:
 
 
 ##################################################################
-#### Docker Commands
-##################################################################
-
-run.phx:
-	docker-compose run --service-ports phx iex --sname phx -S mix phx.server
-
-shell.phx:
-	docker-compose run --rm phx sh
-
-shell.postgres:
-	docker-compose run --rm postgres sh
-
-
-##################################################################
 #### Development Commands
 ##################################################################
+
+phx.run:
+	docker-compose run --service-ports phx iex --sname phx -S mix phx.server
+
+phx.shell:
+	docker-compose run --rm phx sh
+
+phx.routes:
+	docker-compose run --rm --no-deps  phx sh -c "mix phx.routes"
 
 test:
 	ENV=test docker-compose run --rm  phx sh -c "mix test"
@@ -60,9 +55,6 @@ gettext:
 		mix gettext.extract \
 		&& mix gettext.merge priv/gettext"
 
-routes:
-	docker-compose run --rm --no-deps  phx sh -c "mix phx.routes"
-
 deps.update:
 	docker-compose run --rm --no-deps phx sh -c "\
 		mix deps.clean --unused \
@@ -77,6 +69,9 @@ ecto.setup:
 
 ecto.migrate:
 	docker-compose run --rm phx sh -c "mix ecto.migrate"
+
+psql.shell:
+	docker-compose run --rm postgres psql -U postgres -h postgres
 
 npm.install:
 	docker-compose run --rm --no-deps --workdir "/app/src/assets" phx sh -c "npm install"
