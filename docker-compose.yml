@@ -1,4 +1,10 @@
 version: '3.7'
+
+volumes:
+  deps:
+  builds:
+  node_frontend:
+
 services:
   phx:
     image: alvarolizama/phoenix:alpine-3.9
@@ -10,7 +16,7 @@ services:
       - ./scripts:/scripts
       - deps:/app/src/deps
       - builds:/app/src/_build
-      - frontend_node_modules:/app/src/apps/frontend/assets/node_modules
+      - node_frontend:/app/src/apps/frontend/assets/node_modules
     depends_on:
       - postgres
     environment:
@@ -22,8 +28,3 @@ services:
 
   postgres:
     image: postgres:9
-
-volumes:
-  deps:
-  builds:
-  frontend_node_modules:
