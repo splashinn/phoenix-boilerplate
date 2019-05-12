@@ -6,15 +6,17 @@ COPY ./src /app/src
 WORKDIR /app/src
 RUN mix deps.get && mix deps.compile
 
-WORKDIR /app/src/assets
+# Needed for each app with assets
+WORKDIR /app/src/apps/frontend/assets
 RUN npm install \
       && npx webpack --mode production
+#################################
 
-WORKDIR /app/src
+WORKDIR /app/src/
 RUN mix phx.digest \
       && MIX_ENV=prod mix release --env=prod
 
-FROM alpine:3.8
+FROM alpine:3.9
 MAINTAINER Alvaro Lizama Molina <me@alvarolizama.net>
 
 RUN apk --no-cache add -U musl musl-dev ncurses-libs libressl2.7-libcrypto bash

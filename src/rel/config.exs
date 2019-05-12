@@ -10,20 +10,24 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :"KKTZfNn=SV@fD$9sob>%qaIzM*Di_FAD/n~bBB26P9O{i:BRvTy5C;BB"
+  set cookie: :"f0]<KlRo=3@0OHc>H<yO&5FxN*f@r!8SSp;(V*B}O_9:&C,{kxnZ<`/Fn1O<{6RS"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"C4D>N10TlgFWX5BIU]mBHAS^~OGNN[f{1XFTiXG*Lq,W^!=ajjU/?%!@"
+  set cookie: :"nTt[[t<gKS(=1oMHlERRWBcei3i>ftvfe6,cSc(co)3Sv@WcX}b6IoFfou}2jL5;"
   set vm_args: "rel/vm.args"
-  set pre_start_hooks: "rel/hooks/pre_start"
 end
 
 release :phx do
-  set version: current_version(:web_app)
+  set version: "0.1.0"
+  set config_providers: [
+    ConfigTuples.Provider
+  ]
   set applications: [
-    :runtime_tools
+    :runtime_tools,
+    frontend: :permanent
   ]
 end
+

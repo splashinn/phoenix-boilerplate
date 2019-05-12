@@ -1,119 +1,187 @@
-# Phoenix 1.4 Bootsrap Project
+# Phoenix 1.4.5 Bootsrap Project
 
-A Template for web app projects using Phoenix Framework 1.4 + Distillery
+An umbrella template for phoenix projects
 
 ## What includes?
 
-- Phoenix Framework 1.4 and Elixir 1.7.1
-- Distillery for production releases
-- Pre hooks for run migrations in production
-- Environment variables for setting
-- OpenSSL for localhosts
-- Docker compose setup
-- Ready for TDD
+- Elixir 1.7.4
+- Phoenix Framework 1.4.5
+- Releases with Docker
+- Docker compose for development
+- Dev environment with credo and ssl
 
-## Requirements
+## Install Requirements
 
-- Docker
-- Docker Compose
-- Cmake
+All the services for the project run inside docker containers, for that we need install Docker and Docker Compose. 
 
-## Setup the project
-
-Run the script with the name you want for your project as a parameter
-```
-chmod +x rename.sh
-./rename.sh my_project
-```
-
-Copy the .env.template file to .env
-```
-cp .env.template .env
-```
-
-## Run the project for development
-
-### Dependencies
-
-- Install Docker for Mac Os
-
+Download Docker for Mac Os
 ```shell
-Descargar https://download.docker.com/mac/stable/Docker.dmg
+https://download.docker.com/mac/stable/Docker.dmg
 ```
 
-- Install Docker in Linux
-
+Install Docker in Linux
 ```shell
 curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
 curl -L "https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-
 ```
 
-- Install cmake in macOS
-
+Install cmake in macOS
 ```shell
 brew install cmake
 ```
 
-- Install cmake in Linux
-
+Install cmake in Linux
 ```shell
-apt-get install cmake
+apt install cmake
 ```
 
-### Environment
+## Bootstrap project
 
-- Just run the next command for build the environment
+Bootstraping the project is really easy, you only need set you env variables and run a few commands for install project dependencies.
 
+Copy the .env.template file to .env
 ```shell
-make bootstrap
+cp .env.template .env
 ```
 
-- Test the installation running the service and open **http://localhost:8080**
+Install dependencies
+```bash
+make deps.update
+make app=frontend gen.certs
+make app=rontend npm.install
+```
 
+Run services and open in browser *http://localhost:8080*
 ```shell
 make phx.run
 ```
 
-- If you have a pre commit hook for check tests and coverage
-
+If you want a pre commit hook for tests and coverage
 ```shell
 cp script/pre-commit.sh .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
 ```
 
+## Customize the project
+
+Since this is an umbrella project you can easily add more apps or delete the templates apps.
+
+Adding more apps manually
+```bash
+make phx.shell
+cd apps
+mix new my_app --sup
+```
+
+Adding a phoenix app without eco
+```bash
+make phx.shell
+cd apps
+mix phx.new my_app --no-ecto
+```
+
+Adding a phoenix app only for rest services
+```bash
+make phx.shell
+cd apps
+mix phx.new my_app --no-ecto --no-webpack --no-html
+```
+
+When a new app is added, its necessary modify the *docker-compose.yml*, *Dockerfile*and *src/rel/config.ex* to add the volume for assets, ports and apps in release setup.
+
+In *docker-compose.yml* add ports info for each app
+```bash
+version: '3.7'
+services:
+  phx:
+    ports:
+      - ${FRONTEND_HTTP_PORT}:${FRONTEND_HTTP_PORT}
+      - ${FRONTEND_HTTPS_PORT}:${FRONTEND_HTTPS_PORT}
+      - ${OTHER_APP_HTTP_PORT}:${OTHER_APP_HTTP_PORT}
+      - ${OTHER_APP_HTTPS_PORT}:${OTHER_APP_HTTPS_PORT}
+```
+
+In *docker-compose.yml* add volumes for each app with assets
+```bash
+version: '3.7'
+services:
+  phx:
+    volumes:
+      - ./src:/app/src
+      - ./scripts:/scripts
+      - deps:/app/src/deps
+      - builds:/app/src/_build
+      - frontend_node_modules:/app/src/apps/frontend/assets/node_modules
+      - other_app_node_modules:/app/src/apps/other_app/assets/node_modules
+
+...
+volumes:
+  deps:
+  builds:
+  frontend_node_modules:
+  other_app_node_modules:
+```
+
+In *src/rel/config.ex* add each app in to release   setup
+```bash
+release :phx do
+  set version: "0.1.0"
+  set applications: [
+    :runtime_tools,
+    frontend: :permanent,
+	other_app: :permanent
+  ]
+```
+
+In *Dockerfile* add each app for build assets distribution
+```bash
+WORKDIR /app/src/app/frontend/assets
+RUN npm install \
+      && npx webpack --mode production
+WORKDIR /app/src/app/other_app/assets
+RUN npm install \
+      && npx webpack --mode production
+```
+
+Each app use four types for settings files:
+- config.ex: General and static settings 
+- dev.ex: Development and dynamic settings using `System.get_env`
+- test.ex: Test settings
+- prod.ex: Production and dynamic settings using `{:system, "VARNAME"}`_ 
+Don’t forget add config tuple on each applications mix.exs
+```bash
+      {:config_tuples, "~> 0.2.0"},
+```
+
+## Make a release for production
+
+For production release we are using Docker, the Dockerfile is able to create the release and an images with everything you need for running your production app.
+
+Build a new docker images
+```
+docker build -t <NAME:TAG> .
+```
+
+Submit to a repository
+```
+docker push <NAME:TAG>
+```
+
 ## Commands
-
-### Bootrstrap commands
-
-- make bootstrap: Create an enviroment and setup the project
-- make reset: Reset all setups
-
-### Development commands
 
 - make phx.run: Start applications services and an interactive phx shell
 - make phx.shell: Open a shell in web service container
-- make phx.routes: Show routes
+- make psql.shell: Open a shell in postgres service container
+- make deps.update: Clean and update dependencies
 - make test: Run tests
 - make test.shell: Open a shell for testing
-- make credo: Run credo
-- make coverage: Run coverage reports
-- make gettext: Compile gettext
-- make deps.update: Clean and update dependencies
-- make ecto.reset: Delete database and recreate all
-- make ecto.setup: Setup database and migrations
-- make ecto.migrate: Run migrations
-- make psql.shell: Open a shell in postgres service container
-- make npm.install: Run npm install
+- make test.credo: Run credo
+- make test.cover: Run coverage reports
+- make app=app-name gen.certs: Create self signed certs
+- make app=app-name npm.install: Run npm install
+- make app=app-name ecto.setup: Setup database and migrations
+- make app=app-name ecto.migrate: Run migrations
+- make app=app-name ecto.reset: Delete database and recreate all
 
-## Make a release
-
-Build a new docker images
-
-    docker build -t <NAME:TAG> .
-
-Submit to a repository
-
-    docker push <NAME:TAG>

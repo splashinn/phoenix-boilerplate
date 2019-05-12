@@ -3,23 +3,21 @@ services:
   phx:
     image: alvarolizama/phoenix:alpine-3.9
     ports:
-      - ${HOST_HTTP_PORT}:${PHX_HTTP_PORT}
-      - ${HOST_HTTPS_PORT}:${PHX_HTTPS_PORT}
+      - ${FRONTEND_HTTP_PORT}:${FRONTEND_HTTP_PORT}
+      - ${FRONTEND_HTTPS_PORT}:${FRONTEND_HTTPS_PORT}
     volumes:
       - ./src:/app/src
       - ./scripts:/scripts
       - deps:/app/src/deps
       - builds:/app/src/_build
-      - node:/app/src/assets/node_modules
+      - frontend_node_modules:/app/src/apps/frontend/assets/node_modules
     depends_on:
       - postgres
     environment:
       - MIX_ENV=${ENV}
-      - PHX_HTTP_PORT=${PHX_HTTP_PORT}
-      - PHX_HTTPS_PORT=${PHX_HTTPS_PORT}
-      - PHX_URL_HOST=${PHX_URL_HOST}
-      - PHX_SECRET_KEY_BASE=${PHX_SECRET_KEY_BASE}
-      - PG_DATABASE_URL=ecto://postgres:postgres@postgres/${PG_DATABASE_NAME}_${ENV}
+      - FRONTEND_HTTP_PORT=${FRONTEND_HTTP_PORT}
+      - FRONTEND_HTTPS_PORT=${FRONTEND_HTTPS_PORT}
+      - FRONTEND_SECRET_KEY_BASE=${FRONTEND_SECRET_KEY_BASE}
     working_dir: /app/src
 
   postgres:
@@ -28,4 +26,4 @@ services:
 volumes:
   deps:
   builds:
-  node:
+  frontend_node_modules:
