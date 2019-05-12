@@ -21,6 +21,7 @@ services:
       - postgres
     environment:
       - MIX_ENV=${ENV}
+      - DATA_CORE_REPO_URL=ecto://postgres:postgres@postgres/${DATA_CORE_REPO_URL}_${ENV}
       - FRONTEND_HTTP_PORT=${FRONTEND_HTTP_PORT}
       - FRONTEND_HTTPS_PORT=${FRONTEND_HTTPS_PORT}
       - FRONTEND_SECRET_KEY_BASE=${FRONTEND_SECRET_KEY_BASE}

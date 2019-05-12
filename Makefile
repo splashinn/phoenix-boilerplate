@@ -44,10 +44,14 @@ ecto.reset:
 	docker-compose run --rm --workdir "/app/src/apps/$(app)" \
 		phx sh -c "mix ecto.reset"
 
-ecto.setup:
+ecto.create:
 	docker-compose run --rm --workdir "/app/src/apps/$(app)" \
-		phx sh -c "mix ecto.setup"
+		phx sh -c "mix ecto.create"
 
 ecto.migrate:
 	docker-compose run --rm --workdir "/app/src/apps/$(app)" \
 		phx sh -c "mix ecto.migrate"
+
+ecto.gen.migration:
+	docker-compose run --rm --workdir "/app/src/apps/$(app)" \
+		phx sh -c "mix ecto.gen.migration ${name}"

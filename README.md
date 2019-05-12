@@ -49,6 +49,7 @@ cp .env.template .env
 Install dependencies
 ```bash
 make deps.update
+make app=data ecto.create
 make app=frontend gen.certs
 make app=rontend npm.install
 ```
@@ -181,7 +182,8 @@ docker push <NAME:TAG>
 - make test.cover: Run coverage reports
 - make app=app-name gen.certs: Create self signed certs
 - make app=app-name npm.install: Run npm install
-- make app=app-name ecto.setup: Setup database and migrations
+- make app=app-name ecto.create: Create databases
 - make app=app-name ecto.migrate: Run migrations
 - make app=app-name ecto.reset: Delete database and recreate all
+- make app=app-name ecto.gen.migration name=migration-name
 
