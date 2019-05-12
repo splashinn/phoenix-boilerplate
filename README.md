@@ -106,6 +106,13 @@ services:
 In *docker-compose.yml* add volumes for each app with assets
 ```bash
 version: '3.7'
+
+volumes:
+  deps:
+  builds:
+  node_frontend:
+  node_other_app:
+
 services:
   phx:
     volumes:
@@ -113,15 +120,8 @@ services:
       - ./scripts:/scripts
       - deps:/app/src/deps
       - builds:/app/src/_build
-      - frontend_node_modules:/app/src/apps/frontend/assets/node_modules
-      - other_app_node_modules:/app/src/apps/other_app/assets/node_modules
-
-...
-volumes:
-  deps:
-  builds:
-  frontend_node_modules:
-  other_app_node_modules:
+      - node_frontend:/app/src/apps/frontend/assets/node_modules
+      - node_other_app:/app/src/apps/other_app/assets/node_modules
 ```
 
 In *src/rel/config.ex* add each app in to release   setup
