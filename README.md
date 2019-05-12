@@ -1,8 +1,8 @@
 # Phoenix 1.4.5 Bootsrap Project
 
-An umbrella template for phoenix projects
+An umbrella template for phoenix projects following good practices with separation of logic, data and interfaces. 
 
-## What includes?
+## What is includes?
 
 - Elixir 1.7.4
 - Phoenix Framework 1.4.5
@@ -19,7 +19,7 @@ Download Docker for Mac Os
 https://download.docker.com/mac/stable/Docker.dmg
 ```
 
-Install Docker in Linux
+Install Docker for Linux
 ```shell
 curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
@@ -27,19 +27,19 @@ curl -L "https://github.com/docker/compose/releases/download/1.21.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-Install cmake in macOS
+Install cmake on macOS
 ```shell
 brew install cmake
 ```
 
-Install cmake in Linux
+Install cmake on Linux
 ```shell
 apt install cmake
 ```
 
 ## Bootstrap project
 
-Bootstraping the project is really easy, you only need set you env variables and run a few commands for install project dependencies.
+Bootstraping the project is really easy, you only need set you env variables and run a few commands for install dependencies.
 
 Copy the .env.template file to .env
 ```shell
