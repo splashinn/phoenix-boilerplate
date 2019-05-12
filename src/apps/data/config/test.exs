@@ -6,5 +6,4 @@ use Mix.Config
 
 config :data, Data.CoreRepo,
   adapter: Ecto.Adapters.Postgres,
-  url: {:system, "DATA_CORE_REPO_URL"},
-  pool_size: Ecto.Adapters.SQL.Sandbox
+  url: System.get_env("DATA_CORE_REPO_URL")
