@@ -4,11 +4,11 @@
 /src/deps
 /src/*.ez
 /src/erl_crash.dump
-/src/npm-debug.log
-/src/cover
-*assets/node_modules
-*priv/static/
-*priv/cert/
+/src/*npm-debug.log
+/src/apps/*/cover
+/src/apps/*/assets/node_modules
+/src/apps/*/priv/static/
+/src/apps/*/priv/cert/
 *.7z
 *.dmg
 *.gz
