@@ -11,9 +11,9 @@ phx.shell:
 psql.shell:
 	docker-compose run --rm postgres psql -U postgres -h postgres
 
-deps.update:
+deps.get:
 	docker-compose run --rm --no-deps \
-		phx sh -c "mix deps.update && mix deps.compile"
+		phx sh -c "mix deps.get && mix deps.compile"
 
 test:
 	ENV=test docker-compose run --rm  phx sh -c "mix test"

@@ -1,6 +1,6 @@
 # Phoenix 1.4.5 Bootsrap Project
 
-An umbrella template for phoenix projects following good practices with separation of logic, data and interfaces. 
+An umbrella template for phoenix projects following good practices with separation of logic, data and interfaces.
 
 ## What is includes?
 
@@ -12,7 +12,7 @@ An umbrella template for phoenix projects following good practices with separati
 
 ## Install Requirements
 
-All the services for the project run inside docker containers, for that we need install Docker and Docker Compose. 
+All the services for the project run inside docker containers, for that we need install Docker and Docker Compose.
 
 Download Docker for Mac Os
 ```shell
@@ -48,7 +48,7 @@ cp .env.template .env
 
 Install dependencies
 ```bash
-make deps.update
+make deps.get
 make app=data ecto.create
 make app=frontend gen.certs
 make app=rontend npm.install
@@ -147,7 +147,7 @@ RUN npm install \
 ```
 
 Each app use four types for settings files:
-- config.ex: General and static settings 
+- config.ex: General and static settings
 - dev.ex: Development and dynamic settings using `System.get_env`
 - test.ex: Test settings
 - prod.ex: Production and dynamic settings using `{:system, "VARNAME"}`_ 
@@ -175,7 +175,7 @@ docker push <NAME:TAG>
 - make phx.run: Start applications services and an interactive phx shell
 - make phx.shell: Open a shell in web service container
 - make psql.shell: Open a shell in postgres service container
-- make deps.update: Clean and update dependencies
+- make deps.get: Clean and update dependencies
 - make test: Run tests
 - make test.shell: Open a shell for testing
 - make test.credo: Run credo
