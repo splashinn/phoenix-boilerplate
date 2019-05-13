@@ -175,7 +175,7 @@ docker push <NAME:TAG>
 - make phx.run: Start applications services and an interactive phx shell
 - make phx.shell: Open a shell in web service container
 - make psql.shell: Open a shell in postgres service container
-- make deps.get: Clean and update dependencies
+- make deps.get: Get and compile dependencies
 - make test: Run tests
 - make test.shell: Open a shell for testing
 - make test.credo: Run credo
