@@ -7,7 +7,7 @@ volumes:
 
 services:
   phx:
-    image: alvarolizama/phoenix:alpine-3.9
+    image: alvarolizama/phoenix:alpine-3.10
     ports:
       - ${FRONTEND_HTTP_PORT}:${FRONTEND_HTTP_PORT}
       - ${FRONTEND_HTTPS_PORT}:${FRONTEND_HTTPS_PORT}

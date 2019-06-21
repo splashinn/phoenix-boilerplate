@@ -1,4 +1,4 @@
-FROM alvarolizama/phoenix:alpine-3.9
+FROM alvarolizama/phoenix:alpine-3.10
 MAINTAINER Alvaro Lizama Molina <me@alvarolizama.net>
 
 COPY ./src /app/src
