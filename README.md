@@ -41,9 +41,9 @@ apt install cmake
 
 Bootstraping the project is really easy, you only need set you env variables and run a few commands for install dependencies.
 
-Copy the .env.template file to .env
+Copy the .env.example file to .env
 ```shell
-cp .env.template .env
+cp .env.example .env
 ```
 
 Install dependencies

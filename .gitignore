@@ -3,6 +3,7 @@
 /src/db
 /src/deps
 /src/*.ez
+/src/.elixir_ls
 /src/erl_crash.dump
 /src/*npm-debug.log
 /src/apps/*/cover
