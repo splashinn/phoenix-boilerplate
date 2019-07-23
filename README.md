@@ -50,12 +50,12 @@ Install dependencies
 ```bash
 make deps.get
 make app=data ecto.create
-make app=frontend gen.certs
-make app=rontend npm.install
+make app=frontend gen.cert
+make app=frontend npm.install
 ```
 
 Run services and open in browser *http://localhost:8080*
-```shell
+```shellf
 make phx.run
 ```
 
