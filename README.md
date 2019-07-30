@@ -1,8 +1,8 @@
 # Phoenix 1.4.5 Bootsrap Project
 
-An umbrella template for phoenix projects following good practices with separation of logic, data and interfaces.
+An umbrella template for Elixir/Phoenix projects following good practices with separation of logic, data and interfaces.
 
-## What is includes?
+## What is included?
 
 - Elixir 1.7.4
 - Phoenix Framework 1.4.5
@@ -76,7 +76,7 @@ cd apps
 mix new my_app --sup
 ```
 
-Adding a phoenix app without eco
+Adding a phoenix app without ecto
 ```bash
 make phx.shell
 cd apps
